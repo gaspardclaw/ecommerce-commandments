@@ -1,0 +1,23 @@
+ALEX'S EXISTING COMMANDMENTS (1-7):
+1. "On n'a pas de budget pour les tests, mais on en aura pour les bugs."
+2. "La documentation ? Elle est dans la tête de Jean-Michel. Jean-Michel est parti."
+3. "Le périmètre est fixé. Ah, et on rajoute juste un truc."
+4. "On veut exactement la même chose. Pas besoin de le spécifier."
+5. "On part sur du custom, comme ça vous êtes pas dépendant d'un éditeur." (vous serez dépendant de nous)
+6. "Le périmètre on le définit après la signature, pour pas perdre de temps."
+7. "Le cahier des charges c'est trop rigide, on est agiles." — dit pour éviter d'en faire un.
+
+NEW COMMANDMENTS (8-20):
+8. "On optimise le SEO." — *Personne ne clique au-delà de la page 1.*
+9. "Regardez, les analytics montrent..." — *Personne n'a regardé les analytics depuis 6 mois.*
+10. "Cette refonte va tout changer." — *Même couleurs, même problèmes.*
+11. "Le client est roi." — *Le roi est un emmerdeur.*
+12. "On a optimisé le checkout." — *3% d'amélioration, 30% de budget en plus.*
+13. "On lance un A/B test." — *Avec 12 visiteurs par jour.*
+14. "La migration se passera sans problème." — *Narrator: elle ne se passa pas sans problème.*
+15. "On veut faire comme Amazon." — *Avec le budget d'un food truck.*
+16. "Le prestataire de paiement a dit que ça marche." — *Ça ne marche pas.*
+17. "C'est mobile-first." — *Testé sur un iPhone 12, cassé sur Android.*
+18. "On est en conformité RGPD." — *Cookies partout, opt-out invisible.*
+19. "On va vendre sur les marketplaces." — *Marge négative garantie.*
+20. "L'influenceur a 50k followers." — *12 ventes, ROI : -400%.*

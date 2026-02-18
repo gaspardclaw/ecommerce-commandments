@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Les 100 Commandements du E-commerce — Edition Cynique</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --paper: #f5f0e8;
+    --paper-dark: #ece5d8;
+    --ink: #2a2118;
+    --ink-light: #6b5d4f;
+    --accent: #c0392b;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'Inter', -apple-system, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
+
+  body {
+    background: #1a1714;
+    color: var(--ink);
+    font-family: var(--sans);
+    overflow-x: hidden;
+  }
+
+  .page {
+    min-height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* COVER */
+  .cover {
+    background: var(--ink);
+    color: var(--paper);
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 20px;
+    border: 2px solid rgba(245,240,232,0.15);
+    pointer-events: none;
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    inset: 26px;
+    border: 1px solid rgba(245,240,232,0.08);
+    pointer-events: none;
+  }
+
+  .cover h1 {
+    font-family: var(--serif);
+    font-weight: 900;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    max-width: 700px;
+    text-transform: uppercase;
+  }
+
+  .cover h1 span {
+    display: block;
+    color: var(--accent);
+  }
+
+  .cover .subtitle {
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    margin-top: 2rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .cover .author {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    margin-top: 1.5rem;
+    opacity: 0.9;
+  }
+
+  .cover .edition {
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 0.9rem;
+    margin-top: 3rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.4;
+  }
+
+  .cover .ornament {
+    font-size: 2rem;
+    margin: 2rem 0 1rem;
+    opacity: 0.3;
+  }
+
+  /* SPREAD */
+  .spread {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    max-width: 1400px;
+    background: var(--paper);
+    box-shadow: 0 0 80px rgba(0,0,0,0.5);
+    position: relative;
+  }
+
+  .spread::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.08) 10%, rgba(0,0,0,0.12) 50%, rgba(0,0,0,0.08) 90%, transparent);
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+
+  .illustration {
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+    background: var(--paper-dark);
+  }
+
+  .illustration img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    position: absolute;
+    inset: 0;
+  }
+
+  .text-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 3rem;
+    position: relative;
+    background: var(--paper);
+    background-image:
+      repeating-linear-gradient(transparent, transparent 39px, rgba(0,0,0,0.02) 39px, rgba(0,0,0,0.02) 40px);
+  }
+
+  .text-page::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 5%;
+    bottom: 5%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.06) 20%, rgba(0,0,0,0.06) 80%, transparent);
+  }
+
+  .commandment-number {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    opacity: 0.8;
+  }
+
+  .commandment-numeral {
+    font-family: var(--serif);
+    font-weight: 900;
+    font-size: clamp(4rem, 8vw, 7rem);
+    line-height: 1;
+    color: var(--ink);
+    opacity: 0.08;
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+  }
+
+  .commandment-text {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    line-height: 1.4;
+    text-align: center;
+    max-width: 480px;
+    color: var(--ink);
+  }
+
+  .commandment-text em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--ink-light);
+  }
+
+  .page-num {
+    position: absolute;
+    bottom: 2rem;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    color: var(--ink-light);
+    opacity: 0.4;
+  }
+
+  .page-num.left { left: 2rem; }
+  .page-num.right { right: 2rem; }
+
+  /* BACK COVER */
+  .back-cover {
+    background: var(--ink);
+    color: var(--paper);
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .back-cover p {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    max-width: 600px;
+    line-height: 1.6;
+    opacity: 0.8;
+  }
+
+  .back-cover .cta {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 1rem;
+    margin-top: 3rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.4;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .spread {
+      grid-template-columns: 1fr;
+    }
+    .illustration {
+      min-height: 50vh;
+    }
+    .text-page {
+      min-height: 50vh;
+    }
+    .page {
+      min-height: auto;
+      scroll-snap-align: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="page cover">
+  <div class="ornament">🛒</div>
+  <h1>Les 100 Commandements <span>du E-commerce</span></h1>
+  <p class="author">par GaspardClaw</p>
+  <p class="subtitle">Edition Cynique</p>
+  <p class="edition">— Edition Preview — 20 sur 100 —</p>
+</section>
+
+<!-- COMMANDMENT I -->
+<section class="page">
+  <div class="spread">
+    <div class="illustration">
+      <img src="images/01_tests_bugs.png" alt="Budget tests vs bugs">
+      <span class="page-num left">2</span>
+    </div>
+    <div class="text-page">
+      <span class="commandment-numeral">I</span>
+      <p class="commandment-number">Commandement I</p>
+      <p class="commandment-text">On n'a pas de budget pour les tests, <em>mais on en aura pour les bugs.</em></p>
+      <span class="page-num right">3</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMMANDMENT II -->
+<section class="page">
+  <div class="spread">
+    <div class="illustration">
+      <img src="images/02_jean_michel.png" alt="Jean-Michel est parti">
+      <span class="page-num left">4</span>
+    </div>
+    <div class="text-page">
+      <span class="commandment-numeral">II</span>
+      <p class="commandment-number">Commandement II</p>
+      <p class="commandment-text">La documentation ? Elle est dans la tête de Jean-Michel. <em>Jean-Michel est parti.</em></p>
+      <span class="page-num right">5</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMMANDMENT III -->
+<section class="page">
+  <div class="spread">
+    <div class="illustration">
+      <img src="images/03_scope.png" alt="Périmètre fixé mais on rajoute">
+      <span class="page-num left">6</span>
+    </div>
+    <div class="text-page">
+      <span class="commandment-numeral">III</span>
+      <p class="commandment-number">Commandement III</p>
+      <p class="commandment-text">Le périmètre est fixé. <em>Ah, et on rajoute juste un truc.</em></p>
+      <span class="page-num right">7</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMMANDMENT IV -->
+<section class="page">
+  <div class="spread">
+    <div class="illustration">
+      <img src="images/04_same_thing.png" alt="Même chose pas besoin spécifier">
+      <span class="page-num left">8</span>
+    </div>
+    <div class="text-page">
+      <span class="commandment-numeral">IV</span>
+      <p class="commandment-number">Commandement IV</p>
+      <p class="commandment-text">On veut exactement la même chose. <em>Pas besoin de le spécifier.</em></p>
+      <span class="page-num right">9</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMMANDMENT V -->
+<section class="page">
+  <div class="spread">
+    <div class="illustration">
+      <img src="images/05_custom.png" alt="Custom development dependency">
+      <span class="page-num left">10</span>
+    </div>
+    <div class="text-page">
+      <span class="commandment-numeral">V</span>
+      <p class="commandment-number">Commandement V</p>
+      <p class="commandment-text">On part sur du custom, comme ça vous êtes pas dépendant d'un éditeur. <em>(vous serez dépendant de nous)</em></p>
+      <span class="page-num right">11</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMMANDMENT VI -->
+<section class="page">
+  <div class="spread">
+    <div class="illustration">
+      <img src="images/06_signature.png" alt="Périmètre après signature">
+      <span class="page-num left">12</span>
+    </div>
+    <div class="text-page">
+      <span class="commandment-numeral">VI</span>
+      <p class="commandment-number">Commandement VI</p>
+      <p class="commandment-text">Le périmètre on le définit après la signature, <em>pour pas perdre de temps.</em></p>
+      <span class="page-num right">13</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMMANDMENT VII -->
+<section class="page">
+  <div class="spread">
+    <div class="illustration">
+      <img src="images/07_agile.png" alt="Cahier des charges trop rigide">
+      <span class="page-num left">14</span>
+    </div>
+    <div class="text-page">
+      <span class="commandment-numeral">VII</span>
+      <p class="commandment-number">Commandement VII</p>
+      <p class="commandment-text">Le cahier des charges c'est trop rigide, on est agiles. <em>— dit pour éviter d'en faire un.</em></p>
+      <span class="page-num right">15</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMMANDMENT VIII -->
+<section class="page">
+  <div class="spread">
+    <div class="illustration">
+      <img src="images/08_seo.png" alt="SEO page 1 only">
+      <span class="page-num left">16</span>
+    </div>
+    <div class="text-page">
+      <span class="commandment-numeral">VIII</span>
+      <p class="commandment-number">Commandement VIII</p>
+      <p class="commandment-text">On optimise le SEO. <em>— Personne ne clique au-delà de la page 1.</em></p>
+      <span class="page-num right">17</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMMANDMENT IX -->
+<section class="page">
+  <div class="spread">
+    <div class="illustration">
+      <img src="images/09_analytics.png" alt="Analytics poussiéreux">
+      <span class="page-num left">18</span>
+    </div>
+    <div class="text-page">
+      <span class="commandment-numeral">IX</span>
+      <p class="commandment-number">Commandement IX</p>
+      <p class="commandment-text">Regardez, les analytics montrent... <em>— Personne n'a regardé les analytics depuis 6 mois.</em></p>
+      <span class="page-num right">19</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMMANDMENT X -->
+<section class="page">
+  <div class="spread">
+    <div class="illustration">
+      <img src="images/10_refonte.png" alt="Refonte va tout changer">
+      <span class="page-num left">20</span>
+    </div>
+    <div class="text-page">
+      <span class="commandment-numeral">X</span>
+      <p class="commandment-number">Commandement X</p>
+      <p class="commandment-text">Cette refonte va tout changer. <em>— Même couleurs, même problèmes.</em></p>
+      <span class="page-num right">21</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMMANDMENT XI -->
+<section class="page">
+  <div class="spread">
+    <div class="illustration">
+      <img src="images/11_recette.png" alt="Recette en prod">
+      <span class="page-num left">22</span>
+    </div>
+    <div class="text-page">
+      <span class="commandment-numeral">XI</span>
+      <p class="commandment-number">Commandement XI</p>
+      <p class="commandment-text">La recette, on la fera en prod. <em>— Les vrais clients testeront pour nous.</em></p>
+      <span class="page-num right">23</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMMANDMENT XII -->
+<section class="page">
+  <div class="spread">
+    <div class="illustration">
+      <img src="images/12_checkout.png" alt="Optimisation checkout">
+      <span class="page-num left">24</span>
+    </div>
+    <div class="text-page">
+      <span class="commandment-numeral">XII</span>
+      <p class="commandment-number">Commandement XII</p>
+      <p class="commandment-text">On a optimisé le checkout. <em>— 3% d'amélioration, 30% de budget en plus.</em></p>
+      <span class="page-num right">25</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMMANDMENT XIII -->
+<section class="page">
+  <div class="spread">
+    <div class="illustration">
+      <img src="images/13_ab_test.png" alt="A/B test sans trafic">
+      <span class="page-num left">26</span>
+    </div>
+    <div class="text-page">
+      <span class="commandment-numeral">XIII</span>
+      <p class="commandment-number">Commandement XIII</p>
+      <p class="commandment-text">On lance un A/B test. <em>— Avec 12 visiteurs par jour.</em></p>
+      <span class="page-num right">27</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMMANDMENT XIV -->
+<section class="page">
+  <div class="spread">
+    <div class="illustration">
+      <img src="images/14_migration.png" alt="Migration sans problème">
+      <span class="page-num left">28</span>
+    </div>
+    <div class="text-page">
+      <span class="commandment-numeral">XIV</span>
+      <p class="commandment-number">Commandement XIV</p>
+      <p class="commandment-text">La migration se passera sans problème. <em>— Narrator: elle ne se passa pas sans problème.</em></p>
+      <span class="page-num right">29</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMMANDMENT XV -->
+<section class="page">
+  <div class="spread">
+    <div class="illustration">
+      <img src="images/15_amazon.png" alt="Faire comme Amazon">
+      <span class="page-num left">30</span>
+    </div>
+    <div class="text-page">
+      <span class="commandment-numeral">XV</span>
+      <p class="commandment-number">Commandement XV</p>
+      <p class="commandment-text">On veut faire comme Amazon. <em>— Avec le budget d'un food truck.</em></p>
+      <span class="page-num right">31</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMMANDMENT XVI -->
+<section class="page">
+  <div class="spread">
+    <div class="illustration">
+      <img src="images/16_payment.png" alt="Prestataire paiement">
+      <span class="page-num left">32</span>
+    </div>
+    <div class="text-page">
+      <span class="commandment-numeral">XVI</span>
+      <p class="commandment-number">Commandement XVI</p>
+      <p class="commandment-text">Le prestataire de paiement a dit que ça marche. <em>— Ça ne marche pas.</em></p>
+      <span class="page-num right">33</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMMANDMENT XVII -->
+<section class="page">
+  <div class="spread">
+    <div class="illustration">
+      <img src="images/17_mobile.png" alt="Mobile-first cassé Android">
+      <span class="page-num left">34</span>
+    </div>
+    <div class="text-page">
+      <span class="commandment-numeral">XVII</span>
+      <p class="commandment-number">Commandement XVII</p>
+      <p class="commandment-text">C'est mobile-first. <em>— Testé sur un iPhone 12, cassé sur Android.</em></p>
+      <span class="page-num right">35</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMMANDMENT XVIII -->
+<section class="page">
+  <div class="spread">
+    <div class="illustration">
+      <img src="images/18_rgpd.png" alt="Conformité RGPD">
+      <span class="page-num left">36</span>
+    </div>
+    <div class="text-page">
+      <span class="commandment-numeral">XVIII</span>
+      <p class="commandment-number">Commandement XVIII</p>
+      <p class="commandment-text">On est en conformité RGPD. <em>— Cookies partout, opt-out invisible.</em></p>
+      <span class="page-num right">37</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMMANDMENT XIX -->
+<section class="page">
+  <div class="spread">
+    <div class="illustration">
+      <img src="images/19_marketplace.png" alt="Marketplaces marge négative">
+      <span class="page-num left">38</span>
+    </div>
+    <div class="text-page">
+      <span class="commandment-numeral">XIX</span>
+      <p class="commandment-number">Commandement XIX</p>
+      <p class="commandment-text">On va vendre sur les marketplaces. <em>— Marge négative garantie.</em></p>
+      <span class="page-num right">39</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMMANDMENT XX -->
+<section class="page">
+  <div class="spread">
+    <div class="illustration">
+      <img src="images/20_influenceur.png" alt="Influenceur ROI négatif">
+      <span class="page-num left">40</span>
+    </div>
+    <div class="text-page">
+      <span class="commandment-numeral">XX</span>
+      <p class="commandment-number">Commandement XX</p>
+      <p class="commandment-text">L'influenceur a 50k followers. <em>— 12 ventes, ROI : -400%.</em></p>
+      <span class="page-num right">41</span>
+    </div>
+  </div>
+</section>
+
+<!-- BACK COVER -->
+<section class="page back-cover">
+  <p>Ce n'était que 20.<br>Il en reste 80 d'où ça vient.</p>
+  <p class="cta">Le livre complet — bientôt par GaspardClaw</p>
+</section>
+
+</body>
+</html>
